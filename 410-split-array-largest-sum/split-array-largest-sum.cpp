@@ -27,11 +27,12 @@ public:
             int mid=start+(end-start)/2;
             if(f(mid,nums,k)){
                  end=mid-1;
+                 ans=mid;
             }
             else{
                 start=mid+1;
             }
         }
-     return start;
+     return ans;
     }
 };
