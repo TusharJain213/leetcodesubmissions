@@ -1,9 +1,11 @@
 class Solution {
 public:
    set<vector<int>>st;
+   vector<vector<int>>ans;
     void f(vector<int>&nums,int index,vector<int>&ds){
         if(index==(nums.size())){
             st.insert(ds);
+            ans.push_back(ds);
             return ;
         }
           ds.push_back(nums[index]);
@@ -15,11 +17,11 @@ public:
     vector<vector<int>> subsets(vector<int>& nums) {
         sort(nums.begin(),nums.end());
         vector<int>ds;
-        vector<vector<int>>ans;
+        
         f(nums,0,ds);
-        for(auto it:st){
-            ans.push_back(it);
-        }
+        // for(auto it:st){
+        //     ans.push_back(it);
+        // }
         return ans;
     }
 };
