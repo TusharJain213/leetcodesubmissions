@@ -1,20 +1,25 @@
 class Solution {
 public:
-    vector<int>ans;
-    void f(int index,vector<int>&nums,vector<vector<int>>&result){
-        if(index>=nums.size()){
-            result.push_back(ans);
+   set<vector<int>>st;
+    void f(vector<int>&nums,int index,vector<int>&ds){
+        if(index==(nums.size())){
+            st.insert(ds);
             return ;
         }
-        ans.push_back(nums[index]);
-        f(index+1,nums,result);
-        ans.pop_back();
-        f(index+1,nums,result);
-      return ;
-    }
+          ds.push_back(nums[index]);
+          f(nums,index+1,ds);
+          ds.pop_back();
+          f(nums,index+1,ds);
+      return;
+    } 
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>>result;
-        f(0,nums,result);
-        return result;
+        sort(nums.begin(),nums.end());
+        vector<int>ds;
+        vector<vector<int>>ans;
+        f(nums,0,ds);
+        for(auto it:st){
+            ans.push_back(it);
+        }
+        return ans;
     }
 };
