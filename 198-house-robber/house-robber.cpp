@@ -1,28 +1,39 @@
 class Solution {
 public:
-    int f(int idx, vector<int>& nums, vector<int>& dp) {
-        if (idx >= nums.size()) {
-            return 0;
-        }
+    // int f(int idx, vector<int>& nums, vector<int>& dp) {
+    //     if (idx >= nums.size()) {
+    //         return 0;
+    //     }
 
-        // Check if the value for idx is already computed
-        if (dp[idx] != -1) {
-            return dp[idx];
-        }
+        
+    //     if (dp[idx] != -1) {
+    //         return dp[idx];
+    //     }
 
-        // Either pick the current house and skip the next, or skip the current house
-        int pick = nums[idx] + f(idx + 2, nums, dp);
-        int skip = f(idx + 1, nums, dp);
+       
+    //     int pick = nums[idx] + f(idx + 2, nums, dp);
+    //     int skip = f(idx + 1, nums, dp);
 
-        // Store the result in dp
-        dp[idx] = max(pick, skip);
+       
+    //     dp[idx] = max(pick, skip);
 
-        return dp[idx];
-    }
+    //     return dp[idx];
+    // }
 
     int rob(vector<int>& nums) {
         int n = nums.size();
         vector<int> dp(n, -1);
-        return f(0, nums, dp);
+        dp[0]=nums[0];
+        if(nums.size()==1){
+            return dp[0];
+        }
+        dp[1]=max(nums[0],nums[1]);
+        for(int i=2;i<n;i++){
+          //pick->
+          int x=nums[i]+dp[i-2];
+          int y=dp[i-1];
+          dp[i]=max(x,y);
+        }
+        return dp[n-1];
     }
 };
