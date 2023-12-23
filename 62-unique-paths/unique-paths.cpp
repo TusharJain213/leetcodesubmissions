@@ -1,21 +1,21 @@
 class Solution {
 public:
-    int f(int row,int col,int m,int n,vector<vector<int>>&dp){
-        if(row==m-1 && col==n-1){
-            return 1;
-        }
-        if(row>=m || col >=n){
-            return 0;
-        }
-        if(dp[row][col]!=-1){
-            return dp[row][col];
-        }
-        // down ->
-      int x= f(row+1,col,m,n,dp);
-      // right ->
-      int y= f(row,col+1,m,n,dp);
-      return dp[row][col]=x+y;
-    }
+    // int f(int row,int col,int m,int n,vector<vector<int>>&dp){
+    //     if(row==m-1 && col==n-1){
+    //         return 1;
+    //     }
+    //     if(row>=m || col >=n){
+    //         return 0;
+    //     }
+    //     if(dp[row][col]!=-1){
+    //         return dp[row][col];
+    //     }
+    //     // down ->
+    //   int x= f(row+1,col,m,n,dp);
+    //   // right ->
+    //   int y= f(row,col+1,m,n,dp);
+    //   return dp[row][col]=x+y;
+    // }
     int uniquePaths(int m, int n) {
         vector<vector<int>>dp(m,vector<int>(n,0));
         dp[m-1][n-1]=1;
