@@ -1,17 +1,17 @@
 class Solution {
 public:
-     int f(int row,int col,vector<vector<int>>&matrix,int n,vector<vector<int>>&dp){
-         if(col<0 || col >=n || row>=n){
-             return 1e9;
-         }
-         if(row==(n-1)){
-             return matrix[row][col];
-         }
-         if(dp[row][col]!=-1){
-             return dp[row][col];
-         }
-         return dp[row][col]=matrix[row][col]+min(f(row+1,col,matrix,n,dp),min(f(row+1,col+1,matrix,n,dp),f(row+1,col-1,matrix,n,dp))); 
-     }
+    //  int f(int row,int col,vector<vector<int>>&matrix,int n,vector<vector<int>>&dp){
+    //      if(col<0 || col >=n || row>=n){
+    //          return 1e9;
+    //      }
+    //      if(row==(n-1)){
+    //          return matrix[row][col];
+    //      }
+    //      if(dp[row][col]!=-1){
+    //          return dp[row][col];
+    //      }
+    //      return dp[row][col]=matrix[row][col]+min(f(row+1,col,matrix,n,dp),min(f(row+1,col+1,matrix,n,dp),f(row+1,col-1,matrix,n,dp))); 
+    //  }
     int minFallingPathSum(vector<vector<int>>& matrix) {
          int n=matrix.size(); 
          vector<vector<int>>dp(n,vector<int>(n,-1));
