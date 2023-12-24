@@ -23,18 +23,37 @@ public:
         return dp[idx][target] = x || y;
     }
 
-    bool canPartition(vector<int>& nums) {
-        int sum = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            sum += nums[i];
-        }
-        if (sum % 2 != 0) {
-            return false;
-        }
+    #include <vector>
 
-        int n = nums.size();
-        vector<vector<int>> dp(n,vector<int>(sum,-1));
+bool canPartition(std::vector<int>& nums) {
+    int n = nums.size();
+    int sum = 0;
 
-        return f(nums, 0, sum / 2, dp);
+    for (int i = 0; i < n; i++) {
+        sum += nums[i];
     }
+
+    if (sum % 2 != 0 || n == 1) {
+        return false;
+    }
+
+    std::vector<std::vector<bool>> dp(n, std::vector<bool>(sum / 2 + 1, false));
+
+    for (int i = 0; i < n; i++) {
+        dp[i][0] = true;
+    }
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 1; j <= sum / 2; j++) {
+            if (j >= nums[i]) {
+                dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+
+    return dp[n - 1][sum / 2];
+}
+
 };
