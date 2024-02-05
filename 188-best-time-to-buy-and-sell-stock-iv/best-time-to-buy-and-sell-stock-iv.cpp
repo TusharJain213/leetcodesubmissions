@@ -1,7 +1,7 @@
 class Solution {
 public:
      int f(int idx,vector<int>&prices,int buy,int cnt,vector<vector<vector<int>>>&dp){
-        if(prices.size()==idx){
+        if(prices.size()<=idx){
             return 0;
         }
       if(cnt==0){
